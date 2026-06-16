@@ -2,7 +2,6 @@ apiVersion: v3
 kind: service
 metadata:
   name: nestjs-task-api
-  displayName: NestJS Task API
   description: Demo NestJS API instrumented with Datadog SSI.
   owner: infra
   tags:
