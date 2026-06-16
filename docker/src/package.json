@@ -5,7 +5,7 @@
   "description": "NestJS Task Manager API demo with Datadog Agent based APM instrumentation",
   "scripts": {
     "build": "nest build",
-    "start": "node dist/main.js",
+    "start": "node --enable-source-maps dist/main.js",
     "start:dev": "nest start --watch"
   },
   "dependencies": {

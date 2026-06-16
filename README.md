@@ -20,6 +20,14 @@ The API has no Datadog SDK dependency and no tracing code. It exposes simple tas
 docker compose up --build --remove-orphans
 ```
 
+To include Datadog source-code metadata in the built image:
+
+```sh
+DD_GIT_REPOSITORY_URL="$(git config --get remote.origin.url)" \
+DD_GIT_COMMIT_SHA="$(git rev-parse HEAD)" \
+docker compose up --build --remove-orphans
+```
+
 ## Generating load
 
 Run the load generator in Docker with the Compose `load` profile:
@@ -54,6 +62,17 @@ You can validate locally with:
 npm ci --prefix scripts/catalog-tools
 node scripts/catalog-tools/validate.mjs docker/service.datadog.yaml docker/src/docker-compose.yml
 ```
+
+## Source code integration
+
+The API image is built with Datadog source-code metadata:
+
+- `DD_GIT_REPOSITORY_URL`
+- `DD_GIT_COMMIT_SHA`
+- `org.opencontainers.image.source`
+- `org.opencontainers.image.revision`
+
+The TypeScript build emits source maps, and the container runs Node.js with `--enable-source-maps` so Datadog can link stack frames and code snippets back to the repository.
 
 ## Demo script
 
