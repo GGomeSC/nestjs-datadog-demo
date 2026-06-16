@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestjs-task-api
+    depends_on:
+      - datadog-agent
+    ports:
+      - "3000:3000"
+    environment:
+      DD_AGENT_HOST: datadog-agent
+      DD_SERVICE: nestjs-task-api
+      DD_ENV: demo
+      DD_VERSION: 1.0.0
+      DD_LOGS_INJECTION: "true"
+
+  datadog-agent:
+    image: gcr.io/datadoghq/agent
+    container_name: datadog-agent
+    environment:
+      DD_API_KEY: ${DD_API_KEY}
+      DD_SITE: ${DD_SITE:-datadoghq.com}
+      DD_APM_ENABLED: "true"
+      DD_APM_NON_LOCAL_TRAFFIC: "true"
+      DD_APM_INSTRUMENTATION_ENABLED: docker
+      DD_APM_INSTRUMENTATION_LIBRARIES: "js:5"
+      DD_LOGS_ENABLED: "true"
+      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+    expose:
+      - "8126"
