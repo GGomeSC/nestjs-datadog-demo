@@ -1,0 +1,13 @@
+{
+  "name": "datadog-catalog-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node validate.mjs ../../docker/service.datadog.yaml ../../docker/src/docker-compose.yml",
+    "publish": "node publish.mjs ../../docker/service.datadog.yaml"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  }
+}

@@ -1,4 +1,4 @@
-FROM node:26-alpine AS builder
+FROM node:26-slim AS builder
 
 WORKDIR /app
 COPY package*.json ./
@@ -8,7 +8,7 @@ COPY nest-cli.json tsconfig*.json ./
 COPY src ./src
 RUN npm run build
 
-FROM node:26-alpine AS runner
+FROM node:26-slim AS runner
 
 WORKDIR /app
 ENV NODE_ENV=production

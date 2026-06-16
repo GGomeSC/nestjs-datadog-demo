@@ -1,0 +1,27 @@
+apiVersion: v3
+kind: service
+metadata:
+  name: nestjs-task-api
+  displayName: NestJS Task API
+  description: Demo NestJS API instrumented with Datadog SSI.
+  owner: infra
+  tags:
+    - runtime:nodejs
+    - framework:nestjs
+    - instrumentation:ssi
+  links:
+    - name: Source
+      type: repo
+      provider: github
+      url: https://github.com/GGomeSC/nestjs-datadog-demo/
+spec:
+  type: web
+  lifecycle: experimental
+  tier: "3"
+  languages:
+    - js
+datadog:
+  codeLocations:
+    - repositoryURL: https://github.com/GGomeSC/nestjs-datadog-demo/
+      paths:
+        - docker/src/src/**

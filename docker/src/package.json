@@ -15,7 +15,6 @@
     "nest-winston": "^1.10.2",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "uuid": "^11.0.5",
     "winston": "^3.17.0"
   },
   "devDependencies": {
